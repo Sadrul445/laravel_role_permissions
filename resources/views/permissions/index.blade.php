@@ -53,10 +53,11 @@
                             @endforeach
                         </tbody>
                     </table>
-                </div>
-                <div class="px-6 mt-4 my-3">
+                    <div class="mt-4 my-3 bg-gray-100 px-4 py-3">
                     {{ $permissions->links() }}
                 </div>
+                </div>
+                
             </div>
 
         </div>

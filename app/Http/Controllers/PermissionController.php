@@ -45,6 +45,7 @@ class PermissionController extends Controller
 
         if ($validator->passes()) {
             $permission->update(['name' => $request->name]);
+            $permission->save();
             return redirect()->route('permissions.index')->with('success', 'Permission updated successfully.');
         } else {
             return redirect()->route('permissions.edit', $id)->withInput()->withErrors($validator);
