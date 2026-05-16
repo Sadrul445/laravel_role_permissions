@@ -19,9 +19,9 @@
             <div class="overflow-hidden shadow-sm sm:rounded-lg mt-6">
                 <div class="overflow-x-auto">
                     <table class="min-w-full divide-y divide-gray-200">
-                        <thead style="background-color: #000080; font-size:13px" class="font-bold text-white">
+                        <thead style="font-size:13px" class="font-bold text-white bg-gray-800">
                             <tr class="text-center">
-                                <th scope="col" class="px-4 py-4 text-center uppercase tracking-wider">
+                                <th scope="col" class="hidden px-4 py-4 text-center uppercase tracking-wider">
                                     ID</th>
                                 <th scope="col" class="px-4 py-4 text-center uppercase tracking-wider">
                                     Name</th>
@@ -34,7 +34,7 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($permissions as $permission)
                                 <tr class="text-center">
-                                    <td class="px-4 py-4 whitespace-nowrap">{{ $permission->id }}</td>
+                                    <td class="px-4 py-4 whitespace-nowrap hidden">{{ $permission->id }}</td>
                                     <td class="px-4 py-4 whitespace-normal">{{ $permission->name }}</td>
                                     <td class="px-4 py-4 whitespace-normal">
                                         {{ $permission->created_at->format('d M, Y , h:i:s A') }}</td>
