@@ -34,15 +34,16 @@
                         <tbody class="bg-white divide-y divide-gray-200">
                             @foreach ($permissions as $permission)
                                 <tr class="text-center">
-                                    <td class="px-4 py-4 whitespace-nowrap hidden">{{ $permission->id }}</td>
+                                    <td class="px-4 py-4 whitespace-nowrap hidden text-center">{{ $permission->id }}
+                                    </td>
                                     <td class="px-4 py-4 whitespace-normal">{{ $permission->name }}</td>
                                     <td class="px-4 py-4 whitespace-normal">
                                         {{ $permission->created_at->format('d M, Y , h:i:s A') }}</td>
                                     <td class="px-4 py-4 whitespace-nowrap">
                                         <a href="{{ route('permissions.edit', $permission->id) }}"
                                             class="inline-flex items-center px-2 py-1 bg-blue-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-wider hover:bg-blue-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">Edit</a>
-                                        <form action="{{ route('permissions.destroy', $permission->id) }}" method="POST"
-                                            style="display:inline-block;">
+                                        <form action="{{ route('permissions.destroy', $permission->id) }}"
+                                            method="POST" style="display:inline-block;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" onclick="return confirm('Are you sure?')"
@@ -54,10 +55,10 @@
                         </tbody>
                     </table>
                     <div class="mt-4 my-3 bg-gray-100 px-4 py-3">
-                    {{ $permissions->links() }}
+                        {{ $permissions->links() }}
+                    </div>
                 </div>
-                </div>
-                
+
             </div>
 
         </div>
