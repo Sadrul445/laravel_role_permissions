@@ -3,6 +3,7 @@
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\SampleController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -33,6 +34,16 @@ Route::middleware('auth')->group(function () {
     Route::get('/roles/{id}/edit', [RoleController::class, 'edit'])->name('roles.edit');
     Route::put('/roles/{id}', [RoleController::class, 'update'])->name('roles.update');
     Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('roles.destroy');
+    
+    //sample routes
+    Route::get('/samples', [SampleController::class, 'index'])->name('samples.index');
+    Route::get('/samples/create', [SampleController::class, 'create'])->name('samples.create');
+    // Route::post('/samples', [SampleController::class, 'store'])->name('samples.store');
+    // Route::get('/samples/{id}', [SampleController::class, 'show'])->name('samples.show');
+    // Route::get('/samples/{id}/edit', [SampleController::class, 'edit'])->name('samples.edit');
+    // Route::put('/samples/{id}', [SampleController::class, 'update'])->name('samples.update');
+    // Route::delete('/samples/{id}', [SampleController::class, 'destroy'])->name('samples.destroy');
+
     });
 
 require __DIR__.'/auth.php';
