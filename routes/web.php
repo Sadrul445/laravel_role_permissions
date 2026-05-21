@@ -36,13 +36,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/roles/{id}', [RoleController::class, 'destroy'])->name('roles.destroy');
     
     //sample routes
-    Route::get('/samples', [SampleController::class, 'index'])->name('samples.index');
-    Route::get('/samples/create', [SampleController::class, 'create'])->name('samples.create');
+    // Route::get('/samples', [SampleController::class, 'index'])->name('samples.index');
+    // Route::get('/samples/create', [SampleController::class, 'create'])->name('samples.create');
     // Route::post('/samples', [SampleController::class, 'store'])->name('samples.store');
     // Route::get('/samples/{id}', [SampleController::class, 'show'])->name('samples.show');
     // Route::get('/samples/{id}/edit', [SampleController::class, 'edit'])->name('samples.edit');
     // Route::put('/samples/{id}', [SampleController::class, 'update'])->name('samples.update');
     // Route::delete('/samples/{id}', [SampleController::class, 'destroy'])->name('samples.destroy');
+    Route::resource('samples', SampleController::class);
 
     });
 

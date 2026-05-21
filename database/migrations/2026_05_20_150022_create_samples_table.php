@@ -13,87 +13,40 @@ return new class extends Migration
     {
         Schema::create('samples', function (Blueprint $table) {
             $table->id();
-            $table->string('style_no')->unique();
-            $table->string('buyer')->nullable();
-            $table->string('sample_type')->nullable();
-            /*
-            |--------------------------------------------------------------------------
-            | Sample Images
-            |--------------------------------------------------------------------------
-            */
 
-            // Single Image
+            // Images
             $table->string('front_part_image')->nullable();
-
-            // Single Image
             $table->string('back_part_image')->nullable();
+            $table->json('challenge_images')->nullable();    // stored as JSON array of paths
 
-            // Multiple Images (JSON Array)
-            $table->json('challenge_images')->nullable();
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | Product Details
-            |--------------------------------------------------------------------------
-            */
-
-            // Example: 3GG / 5GG / 7GG / 9GG / 12GG
-            $table->string('gg')->nullable();
-
+            // Product Details
+            $table->string('style_no');
+            $table->string('buyer')->nullable();
+            $table->string('sample_type')->nullable();      // Proto Sample, Fit Sample, etc.
+            $table->string('gg')->nullable();               // 3GG, 5GG, 7GG, 9GG, 12GG
             $table->string('end_ply')->nullable();
-
             $table->string('weight_dz_lbs')->nullable();
-
+            $table->string('color')->nullable();
+            $table->year('season')->nullable();
             $table->text('yarn_composition')->nullable();
-
             $table->text('description')->nullable();
 
-            $table->string('color')->nullable();
+            // Challenges
+            $table->json('challenges_in')->nullable();      // stored as JSON array of tag strings
 
-            // Example: 2026
-            $table->year('season')->nullable();
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | Challenges
-            |--------------------------------------------------------------------------
-            */
-
-            // Multi Select Tags System
-            // Example:
-            // ["Knitting", "Ironing", "Packing"]
-            $table->json('challenges_in')->nullable();
-
-
-            /*
-            |--------------------------------------------------------------------------
-            | Production Information
-            |--------------------------------------------------------------------------
-            */
-
+            // Production Information
             $table->date('submission_date')->nullable();
+            $table->decimal('knitting_smv', 8, 2)->nullable();
+            $table->decimal('linking_smv', 8, 2)->nullable();
 
-            // Example: 2.50 mins/pcs
-            $table->decimal('knitting_smv', 10, 2)->nullable();
+            // Status & Audit
+            $table->enum('status', ['draft', 'pending', 'approved', 'rejected'])->default('draft');
 
-            $table->decimal('linking_smv', 10, 2)->nullable();
+            $table->foreignId('created_by')->nullable()->constrained('users')->nullOnDelete();
+            $table->foreignId('updated_by')->nullable()->constrained('users')->nullOnDelete();
 
-
-            /*
-            |--------------------------------------------------------------------------
-            | Status & Audit
-            |--------------------------------------------------------------------------
-            */
-
-            $table->enum('status', [
-                'draft',
-                'pending',
-                'approved',
-                'rejected'
-            ])->default('draft');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

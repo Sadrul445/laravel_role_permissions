@@ -18,6 +18,63 @@
     --radius: 12px;
     --radius-lg: 20px;
     --shadow-card: 0 20px 60px rgba(26, 26, 255, 0.08), 0 4px 16px rgba(0, 0, 0, 0.06);
+
+    /* -----------Sample page root */
+        /* Brand palette */
+    --color-primary:        #2563eb;  /* blue-600  */
+    --color-primary-hover:  #1d4ed8;  /* blue-700  */
+    --color-primary-light:  #eff6ff;  /* blue-50   */
+    --color-primary-ring:   rgba(37, 99, 235, 0.25);
+    /* Surface */
+    --color-surface:       #ffffff;
+    --color-surface-alt:    #f9fafb;  /* gray-50   */
+    --color-border:         #e5e7eb;  /* gray-200  */
+    --color-border-focus:   var(--color-primary);
+ 
+    /* Text */
+    --color-text-body:      #374151;  /* gray-700  */
+    --color-text-muted:     #6b7280;  /* gray-500  */
+    --color-text-subtle:    #9ca3af;  /* gray-400  */
+    --color-text-label:     #4b5563;  /* gray-600  (uppercase label) */
+ 
+    /* Status colours */
+    --status-draft-bg:      #f3f4f6;
+    --status-draft-border:  #9ca3af;
+    --status-draft-text:    #374151;
+ 
+    --status-pending-bg:    #fefce8;
+    --status-pending-border:#facc15;
+    --status-pending-text:  #854d0e;
+ 
+    --status-approved-bg:   #f0fdf4;
+    --status-approved-border:#4ade80;
+    --status-approved-text: #166534;
+ 
+    --status-rejected-bg:   #fef2f2;
+    --status-rejected-border:#f87171;
+    --status-rejected-text: #991b1b;
+ 
+    /* Section icon palette */
+    --section-images-bg:    #eff6ff;
+    --section-images-fg:    #2563eb;
+    --section-product-bg:   #f0fdfa;
+    --section-product-fg:   #0d9488;
+    --section-challenge-bg: #fffbeb;
+    --section-challenge-fg: #d97706;
+    --section-production-bg:#faf5ff;
+    --section-production-fg:#9333ea;
+    --section-status-bg:    #f0fdf4;
+    --section-status-fg:    #16a34a;
+ 
+    /* Spacing / radius / shadow */
+    --radius-card:          0.75rem;  /* rounded-xl  */
+    --radius-input:         0.5rem;   /* rounded-lg  */
+    --shadow-card:          0 1px 3px rgba(0,0,0,.06), 0 1px 2px rgba(0,0,0,.04);
+    --shadow-card-hover:    0 4px 12px rgba(0,0,0,.08);
+ 
+    /* Transitions */
+    --transition-fast:      150ms ease;
+    --transition-base:      200ms ease;
 }
 
 html,
@@ -470,3 +527,480 @@ body {
         transform: translateY(0);
     }
 }
+
+
+/*----------------Sample page-------------------*/
+ 
+/* --------------------------------------------------------------------------
+   2. Base resets / typography helpers
+   -------------------------------------------------------------------------- */
+*, *::before, *::after { box-sizing: border-box; }
+ 
+body {
+    font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    color: var(--color-text-body);
+    background-color: #f3f4f6;
+}
+ 
+/* --------------------------------------------------------------------------
+   3. Layout wrapper
+   -------------------------------------------------------------------------- */
+.sample-form-wrapper {
+    max-width: 64rem;    /* ~1024px */
+    margin-inline: auto;
+    padding: 1.5rem 1rem;
+}
+ 
+@media (min-width: 640px) {
+    .sample-form-wrapper { padding: 2rem 1.5rem; }
+}
+ 
+/* --------------------------------------------------------------------------
+   4. Page Header
+   -------------------------------------------------------------------------- */
+.page-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    margin-bottom: 0.25rem;
+}
+ 
+.page-breadcrumb a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: text-decoration var(--transition-fast);
+}
+.page-breadcrumb a:hover { text-decoration: underline; }
+ 
+.page-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+}
+ 
+/* --------------------------------------------------------------------------
+   5. Section Card
+   -------------------------------------------------------------------------- */
+.section-card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    margin-bottom: 1.25rem;
+    box-shadow: var(--shadow-card);
+    transition: box-shadow var(--transition-base);
+}
+.section-card:hover { box-shadow: var(--shadow-card-hover); }
+ 
+/* Section header row */
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+ 
+.section-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+ 
+.section-meta { line-height: 1; }
+.section-meta-label {
+    font-size: 0.65rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-subtle);
+    display: block;
+    margin-bottom: 0.15rem;
+}
+.section-meta-title {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-text-body);
+}
+ 
+/* Section body */
+.section-body {
+    padding: 1.25rem;
+}
+ 
+/* --------------------------------------------------------------------------
+   6. Form Grid
+   -------------------------------------------------------------------------- */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+}
+ 
+@media (min-width: 640px) {
+    .form-grid { grid-template-columns: repeat(2, 1fr); }
+}
+ 
+.col-span-full { grid-column: 1 / -1; }
+ 
+/* --------------------------------------------------------------------------
+   7. Form Fields
+   -------------------------------------------------------------------------- */
+.field-label {
+    display: block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--color-text-label);
+    margin-bottom: 0.375rem;
+}
+ 
+.field-required { color: #f87171; }
+ 
+.form-input,
+.form-select,
+.form-textarea {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-input);
+    background: var(--color-surface);
+    color: var(--color-text-body);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+    outline: none;
+}
+ 
+.form-input::placeholder,
+.form-textarea::placeholder { color: var(--color-text-subtle); }
+ 
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 3px var(--color-primary-ring);
+}
+ 
+.form-input.is-invalid,
+.form-select.is-invalid,
+.form-textarea.is-invalid { border-color: #f87171; }
+ 
+.form-textarea { resize: none; }
+ 
+.field-error {
+    margin-top: 0.25rem;
+    font-size: 0.7rem;
+    color: #ef4444;
+}
+ 
+/* --------------------------------------------------------------------------
+   8. Upload Zone
+   -------------------------------------------------------------------------- */
+.upload-zone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+    border: 1.5px dashed var(--color-border);
+    border-radius: var(--radius-input);
+    cursor: pointer;
+    background: var(--color-surface-alt);
+    text-align: center;
+    transition: border-color var(--transition-fast), background var(--transition-fast);
+}
+.upload-zone:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary-light);
+}
+.upload-zone-icon { color: var(--color-text-subtle); }
+.upload-zone-text { font-size: 0.875rem; color: var(--color-text-muted); }
+.upload-zone-hint { font-size: 0.7rem; color: var(--color-text-subtle); }
+ 
+/* Preview containers */
+.preview-single { margin-top: 0.5rem; }
+.preview-single img {
+    height: 6rem;
+    border-radius: 0.5rem;
+    object-fit: cover;
+    border: 1px solid var(--color-border);
+}
+ 
+.preview-multi {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+.preview-multi-item { position: relative; }
+.preview-multi-item img {
+    width: 5rem;
+    height: 5rem;
+    object-fit: cover;
+    border-radius: 0.5rem;
+    border: 1px solid var(--color-border);
+    display: block;
+}
+.preview-multi-badge {
+    position: absolute;
+    bottom: 0.25rem;
+    right: 0.25rem;
+    background: rgba(0,0,0,.55);
+    color: #fff;
+    font-size: 0.6rem;
+    border-radius: 0.2rem;
+    padding: 0.1rem 0.3rem;
+}
+ 
+/* --------------------------------------------------------------------------
+   9. Radio Pills (GG / Status)
+   -------------------------------------------------------------------------- */
+.radio-pill-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+ 
+.radio-pill { cursor: pointer; }
+ 
+.radio-pill input[type="radio"] { position: absolute; opacity: 0; width: 0; height: 0; }
+ 
+.radio-pill-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 600;
+    border: 1px solid var(--color-border);
+    border-radius: 9999px;
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    transition: all var(--transition-fast);
+    user-select: none;
+    cursor: pointer;
+}
+.radio-pill-label:hover { border-color: #d1d5db; background: #f9fafb; }
+ 
+/* Checked state — purple for GG */
+.radio-pill.gg-pill input:checked + .radio-pill-label {
+    background: #faf5ff;
+    border-color: #c084fc;
+    color: #7e22ce;
+}
+ 
+/* Checked states for status */
+.radio-pill.status-draft input:checked + .radio-pill-label {
+    background: var(--status-draft-bg);
+    border-color: var(--status-draft-border);
+    color: var(--status-draft-text);
+}
+.radio-pill.status-pending input:checked + .radio-pill-label {
+    background: var(--status-pending-bg);
+    border-color: var(--status-pending-border);
+    color: var(--status-pending-text);
+}
+.radio-pill.status-approved input:checked + .radio-pill-label {
+    background: var(--status-approved-bg);
+    border-color: var(--status-approved-border);
+    color: var(--status-approved-text);
+}
+.radio-pill.status-rejected input:checked + .radio-pill-label {
+    background: var(--status-rejected-bg);
+    border-color: var(--status-rejected-border);
+    color: var(--status-rejected-text);
+}
+ 
+/* Status pill — rect (not fully rounded) */
+.radio-pill.status-pill .radio-pill-label {
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+}
+ 
+/* --------------------------------------------------------------------------
+   10. Tag / Challenges system
+   -------------------------------------------------------------------------- */
+.tag-input-box {
+    min-height: 2.75rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.4rem 0.5rem;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-input);
+    background: var(--color-surface);
+    cursor: text;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.tag-input-box:focus-within {
+    border-color: var(--color-border-focus);
+    box-shadow: 0 0 0 3px var(--color-primary-ring);
+}
+ 
+.tag-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    background: #fffbeb;
+    color: #92400e;
+    border: 1px solid #fcd34d;
+}
+.tag-pill-remove {
+    line-height: 1;
+    font-size: 0.9rem;
+    color: #d97706;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+.tag-pill-remove:hover { color: #78350f; }
+ 
+.tag-placeholder {
+    font-size: 0.8rem;
+    color: var(--color-text-subtle);
+    font-style: italic;
+    padding-left: 0.25rem;
+}
+ 
+.tag-text-input {
+    flex: 1;
+    min-width: 8rem;
+    outline: none;
+    font-size: 0.875rem;
+    background: transparent;
+    border: none;
+    color: var(--color-text-body);
+}
+ 
+.suggestion-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+.suggestion-chip {
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    border: 1.5px dashed var(--color-border);
+    border-radius: 9999px;
+    color: var(--color-text-muted);
+    background: var(--color-surface);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+.suggestion-chip:hover {
+    border-color: #fcd34d;
+    color: #92400e;
+    background: #fffbeb;
+}
+ 
+kbd {
+    display: inline-block;
+    padding: 0.1rem 0.35rem;
+    font-size: 0.7rem;
+    font-family: ui-monospace, monospace;
+    background: #f3f4f6;
+    border: 1px solid #d1d5db;
+    border-radius: 0.25rem;
+    color: var(--color-text-muted);
+}
+ 
+/* --------------------------------------------------------------------------
+   11. Form Action Bar
+   -------------------------------------------------------------------------- */
+.form-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem;
+    background: var(--color-surface-alt);
+    border-top: 1px solid #f3f4f6;
+}
+ 
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1.25rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: var(--radius-input);
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    line-height: 1.4;
+}
+.btn:focus-visible { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+ 
+.btn-ghost {
+    background: transparent;
+    border-color: var(--color-border);
+    color: var(--color-text-muted);
+}
+.btn-ghost:hover { background: #f3f4f6; border-color: #d1d5db; color: var(--color-text-body); }
+ 
+.btn-outline {
+    background: var(--color-surface);
+    border-color: #d1d5db;
+    color: #374151;
+}
+.btn-outline:hover { background: #f9fafb; }
+ 
+.btn-primary {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+}
+.btn-primary:hover { background: var(--color-primary-hover); border-color: var(--color-primary-hover); }
+ 
+/* --------------------------------------------------------------------------
+   12. Validation Error Banner
+   -------------------------------------------------------------------------- */
+.error-banner {
+    margin-bottom: 1.25rem;
+    padding: 1rem 1.25rem;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: var(--radius-input);
+}
+.error-banner ul {
+    margin: 0;
+    padding-left: 1.25rem;
+}
+.error-banner li {
+    font-size: 0.8rem;
+    color: #dc2626;
+    margin-bottom: 0.2rem;
+}
+ 
+/* --------------------------------------------------------------------------
+   13. Responsive tweaks
+   -------------------------------------------------------------------------- */
+@media (max-width: 479px) {
+    .section-header { padding: 0.875rem 1rem; }
+    .section-body   { padding: 1rem; }
+    .form-actions   { padding: 0.875rem 1rem; }
+    .btn            { padding: 0.5rem 1rem; font-size: 0.8rem; }
+}
+ 
